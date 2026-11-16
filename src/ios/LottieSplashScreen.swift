@@ -107,7 +107,7 @@ import Lottie
             visible = true
         } else if callbackId != nil {
             let result = CDVPluginResult.init(status: CDVCommandStatus_ERROR, messageAs: LottieSplashScreenError.animationAlreadyPlaying.localizedDescription)
-            commandDelegate.send(result, callbackId: callbackId)
+            commandDelegate.send(result, callbackId: callbackId!)
         }
     }
 
@@ -228,7 +228,7 @@ import Lottie
     private func processInvalidURLError(error: Error) {
         if callbackId != nil {
             let result = CDVPluginResult.init(status: CDVCommandStatus_ERROR, messageAs: LottieSplashScreenError.invalidURL.localizedDescription)
-            commandDelegate.send(result, callbackId: callbackId)
+            commandDelegate.send(result, callbackId: callbackId!)
         } else {
             NSLog("Unexpected error: \(error.localizedDescription)")
         }
@@ -247,7 +247,7 @@ import Lottie
     private func sendCallback() {
         if callbackId != nil {
             let result = CDVPluginResult.init(status: CDVCommandStatus_OK)
-            commandDelegate.send(result, callbackId: callbackId)
+            commandDelegate.send(result, callbackId: callbackId!)
             callbackId = nil
         }
     }
